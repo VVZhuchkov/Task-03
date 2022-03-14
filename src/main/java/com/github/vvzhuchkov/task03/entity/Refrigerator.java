@@ -1,6 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class Refrigerator extends Appliance {
+public class Refrigerator implements Appliance {
     private String powerConsumption;
     private String weight;
     private String freezerCapacity;

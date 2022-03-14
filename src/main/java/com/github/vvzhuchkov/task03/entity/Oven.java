@@ -1,6 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class Oven extends Appliance {
+public class Oven implements Appliance {
     private String powerConsumption;
     private String weight;
     private String capacity;

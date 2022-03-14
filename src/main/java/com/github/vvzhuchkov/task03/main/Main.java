@@ -7,10 +7,12 @@ import com.github.vvzhuchkov.task03.entity.criteria.Criteria;
 import com.github.vvzhuchkov.task03.service.ApplianceService;
 import com.github.vvzhuchkov.task03.service.ServiceFactory;
 
+import java.util.List;
+
 public class Main {
 
 	public static void main(String[] args) {
-		Appliance appliance;
+		List<String> appliances;
 
 		ServiceFactory factory = ServiceFactory.getInstance();
 		ApplianceService service = factory.getApplianceService();
@@ -20,9 +22,9 @@ public class Main {
 		Criteria criteriaOven = new Criteria(Oven.class.getSimpleName());//"Oven"
 		criteriaOven.add(Oven.CAPACITY.toString(), 3);
 
-		appliance = service.find(criteriaOven);
+		appliances = service.find(criteriaOven);
 
-		PrintApplianceInfo.print(appliance);
+		PrintApplianceInfo.print(appliances);
 
 		//////////////////////////////////////////////////////////////////
 
@@ -30,20 +32,20 @@ public class Main {
 		criteriaOven.add(Oven.HEIGHT.toString(), 200);
 		criteriaOven.add(Oven.DEPTH.toString(), 300);
 
-		appliance = service.find(criteriaOven);
+		appliances = service.find(criteriaOven);
 
-		PrintApplianceInfo.print(appliance);
+		PrintApplianceInfo.print(appliances);
 
 		//////////////////////////////////////////////////////////////////
-		
+
 		Criteria criteriaTabletPC = new Criteria(TabletPC.class.getSimpleName());
 		criteriaTabletPC.add(TabletPC.COLOR.toString(), "BLUE");
 		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES.toString(), 14);
-		criteriaTabletPC.add(TabletPC.MEMORY_ROM.toString(), 4);
+		criteriaTabletPC.add(TabletPC.MEMORY_ROM.toString(), 4000);
 
-		appliance = service.find(criteriaOven);// find(Object...obj)
+		appliances = service.find(criteriaOven);// find(Object...obj)
 
-		PrintApplianceInfo.print(appliance);
+		PrintApplianceInfo.print(appliances);
 
 	}
 
