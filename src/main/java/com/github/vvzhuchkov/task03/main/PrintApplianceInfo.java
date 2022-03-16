@@ -15,6 +15,7 @@ public class PrintApplianceInfo {
                 System.out.println(appliance);
             }
         }
+        System.out.println("-----------------------------------------------------------------------------------------");
     }
 
     // you may add your own code here
