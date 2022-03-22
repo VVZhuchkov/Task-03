@@ -13,18 +13,26 @@ import java.util.List;
 import java.util.Map;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
+    private final String databasePath = databasePath();
 
     @Override
     public String databasePath() {
-        return null;
+        URL filePath = getClass().getClassLoader().getResource("appliances_db.txt");
+        File file = null;
+        try {
+            file = Paths.get(filePath.toURI()).toFile();
+        } catch (URISyntaxException e) {
+            System.out.println("Incorrect path to file");
+        }
+        String databasePath = file.getAbsolutePath();
+        return databasePath;
     }
 
     @Override
     public List<String> find(Criteria criteria) {
         List<String> appliances = new ArrayList<>();
-        String databasePath = databasePath();
         int coincidence = 0;
-        String appliance = null;
+        String appliance;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(databasePath))) {
             while ((appliance = bufferedReader.readLine()) != null && !appliance.isEmpty()) {
                 String[] typeAppliance = appliance.split(" : ");
