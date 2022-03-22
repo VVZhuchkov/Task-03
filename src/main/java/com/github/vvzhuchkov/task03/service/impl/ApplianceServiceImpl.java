@@ -12,7 +12,7 @@ import java.util.List;
 public class ApplianceServiceImpl implements ApplianceService {
 
 	@Override
-	public List<String> find(Criteria criteria) {
+	public List<Appliance> find(Criteria criteria) {
 		if (!Validator.criteriaValidator(criteria)) {
 			return null;
 		}
@@ -20,7 +20,7 @@ public class ApplianceServiceImpl implements ApplianceService {
 		DAOFactory factory = DAOFactory.getInstance();
 		ApplianceDAO applianceDAO = factory.getApplianceDAO();
 		
-		List<String> appliances = applianceDAO.find(criteria);
+		List<Appliance> appliances = applianceDAO.find(criteria);
 		
 		// you may add your own code here
 		

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ApplianceService {	
 	
-	List<String> find(Criteria criteria);
+	List<Appliance> find(Criteria criteria);
 	
 }
