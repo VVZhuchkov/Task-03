@@ -1,6 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class Speakers implements Appliance {
+public class Speakers extends Appliance {
     private String powerConsumption;
     private String numberOfSpeakers;
     private String frequencyRange;

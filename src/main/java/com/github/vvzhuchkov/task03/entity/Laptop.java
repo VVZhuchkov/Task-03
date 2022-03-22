@@ -1,6 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class Laptop implements Appliance {
+public class Laptop extends Appliance {
     private String batteryCapacity;
     private String operationSystem;
     private String memoryRom;

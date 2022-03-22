@@ -1,5 +1,8 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public interface Appliance {
+public abstract class Appliance {
+    String brand;
+    String model;
+    double price;
 
 }

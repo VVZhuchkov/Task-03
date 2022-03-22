@@ -1,6 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class TabletPC implements Appliance {
+public class TabletPC extends Appliance {
     private String batteryCapacity;
     private String displayInches;
     private String memoryRom;

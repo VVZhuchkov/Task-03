@@ -3,11 +3,11 @@ package com.github.vvzhuchkov.task03.entity.criteria;
 public final class SearchCriteria {
 	
 	public static enum Oven{
-		POWER_CONSUMPTION, WEIGHT, CAPACITY, DEPTH, HEIGHT, WIDTH
+		BRAND, MODEL, PRICE, POWER_CONSUMPTION, WEIGHT, CAPACITY, DEPTH, HEIGHT, WIDTH
 	}
 	
 	public static enum Laptop{
-		BATTERY_CAPACITY, OS, MEMORY_ROM, SYSTEM_MEMORY, CPU, DISPLAY_INCHS
+		BRAND, MODEL, PRICE, BATTERY_CAPACITY, OS, MEMORY_ROM, SYSTEM_MEMORY, CPU, DISPLAY_INCHS
 	}
 	
 	public static enum Refrigerator{

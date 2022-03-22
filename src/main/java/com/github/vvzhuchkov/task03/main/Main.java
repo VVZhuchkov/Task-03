@@ -27,7 +27,7 @@ public class Main {
 
         //////////////////////////////////////////////////////////////////
 
-        criteriaOven = new Criteria(Oven.class.getSimpleName());
+      /*  criteriaOven = new Criteria(Oven.class.getSimpleName());
         criteriaOven.add(Oven.HEIGHT.toString(), 200);
         criteriaOven.add(Oven.DEPTH.toString(), 300);
 
@@ -45,7 +45,7 @@ public class Main {
         appliances = service.find(criteriaTabletPC);// find(Object...obj)
 
         PrintApplianceInfo.print(appliances);
-
+*/
     }
 
 }

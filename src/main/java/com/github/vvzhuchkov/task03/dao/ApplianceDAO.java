@@ -6,5 +6,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 public interface ApplianceDAO {
+
+	String databasePath();
 	List<String> find(Criteria criteria);
 }

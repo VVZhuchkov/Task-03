@@ -1,6 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class VacuumCleaner implements Appliance {
+public class VacuumCleaner extends Appliance {
     private String powerConsumption;
     private String filterType;
     private String bagType;

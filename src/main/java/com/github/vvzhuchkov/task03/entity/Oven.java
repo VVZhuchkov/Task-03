@@ -1,67 +1,123 @@
 package com.github.vvzhuchkov.task03.entity;
 
-public class Oven implements Appliance {
-    private String powerConsumption;
-    private String weight;
-    private String capacity;
-    private String depth;
-    private String height;
-    private String width;
+public class Oven extends Appliance {
+    private final int powerConsumption;
+    private final double weight;
+    private final int capacity;
+    private final double depth;
+    private final double height;
+    private final double width;
 
-    public Oven(String powerConsumption, String weight, String capacity, String depth, String height, String width) {
-        this.powerConsumption = powerConsumption;
-        this.weight = weight;
-        this.capacity = capacity;
-        this.depth = depth;
-        this.height = height;
-        this.width = width;
+    public Oven(OvenBuilder ovenBuilder) {
+        this.powerConsumption = ovenBuilder.getPowerConsumption();
+        this.weight = ovenBuilder.getWeight();
+        this.capacity = ovenBuilder.getCapacity();
+        this.depth = ovenBuilder.getDepth();
+        this.height = ovenBuilder.getHeight();
+        this.width = ovenBuilder.getWidth();
     }
 
-    public String getPowerConsumption() {
+    public int getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(String powerConsumption) {
-        this.powerConsumption = powerConsumption;
-    }
-
-    public String getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public String getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getDepth() {
+    public double getDepth() {
         return depth;
     }
 
-    public void setDepth(String depth) {
-        this.depth = depth;
-    }
-
-    public String getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(String width) {
-        this.width = width;
+    public static class OvenBuilder {
+        private final String brand;
+        private final String model;
+        private final double price;
+        private int powerConsumption = 0;
+        private double weight = 0;
+        private int capacity = 0;
+        private double depth = 0;
+        private double height = 0;
+        private double width = 0;
+
+        public OvenBuilder(String brand, String model, double price) {
+            this.brand = brand;
+            this.model = model;
+            this.price = price;
+        }
+
+        public OvenBuilder setPowerConsumption(int powerConsumption) {
+            this.powerConsumption = powerConsumption;
+            return this;
+        }
+
+        public OvenBuilder setWeight(double weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        public OvenBuilder setCapacity(int capacity) {
+            this.capacity = capacity;
+            return this;
+        }
+
+        public OvenBuilder setDepth(double depth) {
+            this.depth = depth;
+            return this;
+        }
+
+        public OvenBuilder setHeight(double height) {
+            this.height = height;
+            return this;
+        }
+
+        public OvenBuilder setWidth(double width) {
+            this.width = width;
+            return this;
+        }
+
+        public int getPowerConsumption() {
+            return powerConsumption;
+        }
+
+        public double getWeight() {
+            return weight;
+        }
+
+        public int getCapacity() {
+            return capacity;
+        }
+
+        public double getDepth() {
+            return depth;
+        }
+
+        public double getHeight() {
+            return height;
+        }
+
+        public double getWidth() {
+            return width;
+        }
+
+        public Oven build() {
+            return new Oven(this);
+        }
     }
 }
+
+
+
+
