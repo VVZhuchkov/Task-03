@@ -2,7 +2,6 @@ package com.github.vvzhuchkov.task03.main;
 
 import static com.github.vvzhuchkov.task03.entity.criteria.SearchCriteria.*;
 
-import com.github.vvzhuchkov.task03.entity.Appliance;
 import com.github.vvzhuchkov.task03.entity.criteria.Criteria;
 import com.github.vvzhuchkov.task03.service.ApplianceService;
 import com.github.vvzhuchkov.task03.service.ServiceFactory;
