@@ -6,9 +6,6 @@ import com.github.vvzhuchkov.task03.entity.Oven;
 import com.github.vvzhuchkov.task03.entity.criteria.Criteria;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +15,15 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 
     @Override
     public String databasePath() {
+        String databasePath = new File("").getAbsolutePath() + File.separator + "src" + File.separator +
+                "main" + File.separator + "resources" + File.separator + "appliances_db.txt";
+        return databasePath;
+    }
+
+    /*@Override
+    public String databasePath() {
         URL filePath = getClass().getClassLoader().getResource("appliances_db.txt");
+        System.out.println(filePath);
         File file = null;
         try {
             file = Paths.get(filePath.toURI()).toFile();
@@ -27,7 +32,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         }
         String databasePath = file.getAbsolutePath();
         return databasePath;
-    }
+    }*/
 
     /*@Override
     public String readingTypeAppliance(Criteria criteria) {
@@ -56,17 +61,21 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         char[] valuesAppliance = parametersAppliance.toCharArray();
         for (int i = 0; i < valuesAppliance.length; i++) {
             if (valuesAppliance[i] == '=') {
-                stringBuilder.append(i + 1);
-                if (valuesAppliance[i] == ',') {
-                    parameters.add(stringBuilder.toString());
+                i++;
+                while (valuesAppliance[i] != ',' && i < valuesAppliance.length-1) {
+                    stringBuilder.append(valuesAppliance[i]);
+                    i++;
                 }
+                parameters.add(stringBuilder.toString());
+                stringBuilder = new StringBuilder();
             }
-            stringBuilder = new StringBuilder();
         }
         return parameters;
     }
 
     public Appliance createAppliance(List<String> parameters) {
+        for (String par : parameters){
+            System.out.println(par);}
         switch (parameters.get(0)) {
             case "Oven":
                 return new Oven.OvenBuilder(parameters.get(1), parameters.get(2), Double.parseDouble(parameters.get(3)))
@@ -88,24 +97,27 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         int coincidence = 0;
         String appliance;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(databasePath))) {
-            while ((appliance = bufferedReader.readLine()) != null && !appliance.isEmpty()) {
-                String[] typeAppliance = appliance.split(" : ");
-                String[] parameters = typeAppliance[1].split(", ");
-                if (typeAppliance[0].equals(criteria.getGroupSearchName())) {
-                    for (Map.Entry<String, Object> oneCrit : criteria.getCriteria().entrySet()) {
-                        String searchParameter = oneCrit.getKey() + "=" + oneCrit.getValue();
-                        for (String parameter : parameters)
-                            if (parameter.equals(searchParameter)) {
-                                coincidence++;
-                                if (coincidence == criteria.getCriteria().size()) {
-                                    appliances.add(createAppliance(readingParameters(typeAppliance[0], typeAppliance[1])));
+            while ((appliance = bufferedReader.readLine()) != null) {
+                while (!appliance.isEmpty()) {
+                    String[] typeAppliance = appliance.split(" : ");
+                    String[] parameters = typeAppliance[1].split(", ");
+                    if (typeAppliance[0].equals(criteria.getGroupSearchName())) {
+                        for (Map.Entry<String, Object> oneCrit : criteria.getCriteria().entrySet()) {
+                            String searchParameter = oneCrit.getKey() + "=" + oneCrit.getValue();
+                            for (String parameter : parameters) {
+                                if (parameter.equals(searchParameter)) {
+                                    coincidence++;
+                                    if (coincidence == criteria.getCriteria().size()) {
+                                        appliances.add(createAppliance(readingParameters(typeAppliance[0], typeAppliance[1])));
+                                    }
                                 }
                             }
+                        }
                     }
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Database connection error");
         } catch (IOException e) {
             e.printStackTrace();
         }
