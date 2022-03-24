@@ -6,19 +6,19 @@ import com.github.vvzhuchkov.task03.entity.Oven;
 import com.github.vvzhuchkov.task03.entity.criteria.Criteria;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
-    private final String databasePath = databasePath();
+    private final InputStream inputStream = databasePath();
 
     @Override
-    public String databasePath() {
-        String databasePath = new File("").getAbsolutePath() + File.separator + "src" + File.separator +
-                "main" + File.separator + "resources" + File.separator + "appliances_db.txt";
-        return databasePath;
+    public InputStream databasePath() {
+     /*   String databasePath = new File("").getAbsolutePath() + File.separator + "src" + File.separator +
+                "main" + File.separator + "resources" + File.separator + "appliances_db.txt";*/
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("appliances_db.txt");
+        return inputStream;
     }
+
 
     /*@Override
     public String databasePath() {
@@ -58,24 +58,24 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         List<String> parameters = new ArrayList<>();
         parameters.add(typeAppliance);
         StringBuilder stringBuilder = new StringBuilder();
-        char[] valuesAppliance = parametersAppliance.toCharArray();
+
+      /*  char[] valuesAppliance = parametersAppliance.toCharArray();
         for (int i = 0; i < valuesAppliance.length; i++) {
             if (valuesAppliance[i] == '=') {
                 i++;
                 while (valuesAppliance[i] != ',' && i < valuesAppliance.length-1) {
                     stringBuilder.append(valuesAppliance[i]);
                     i++;
-                }
-                parameters.add(stringBuilder.toString());
-                stringBuilder = new StringBuilder();
-            }
-        }
+                }*/
+        parameters.add(stringBuilder.toString());
+        stringBuilder = new StringBuilder();
         return parameters;
     }
 
     public Appliance createAppliance(List<String> parameters) {
-        for (String par : parameters){
-            System.out.println(par);}
+        for (String par : parameters) {
+            System.out.println(par);
+        }
         switch (parameters.get(0)) {
             case "Oven":
                 return new Oven.OvenBuilder(parameters.get(1), parameters.get(2), Double.parseDouble(parameters.get(3)))
@@ -96,7 +96,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         List<Appliance> appliances = new ArrayList<>();
         int coincidence = 0;
         String appliance;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(databasePath))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
             while ((appliance = bufferedReader.readLine()) != null) {
                 while (!appliance.isEmpty()) {
                     String[] typeAppliance = appliance.split(" : ");
