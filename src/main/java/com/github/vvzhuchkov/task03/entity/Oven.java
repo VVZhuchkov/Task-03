@@ -1,6 +1,9 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class Oven extends Appliance {
+    private final String brand;
+    private final String model;
+    private final double price;
     private final int powerConsumption;
     private final double weight;
     private final int capacity;
@@ -8,37 +11,16 @@ public class Oven extends Appliance {
     private final double height;
     private final double width;
 
-    public Oven(OvenBuilder ovenBuilder) {
+    private Oven(OvenBuilder ovenBuilder) {
+        this.brand = ovenBuilder.brand;
+        this.model = ovenBuilder.model;
+        this.price = ovenBuilder.price;
         this.powerConsumption = ovenBuilder.getPowerConsumption();
         this.weight = ovenBuilder.getWeight();
         this.capacity = ovenBuilder.getCapacity();
         this.depth = ovenBuilder.getDepth();
         this.height = ovenBuilder.getHeight();
         this.width = ovenBuilder.getWidth();
-    }
-
-    public int getPowerConsumption() {
-        return powerConsumption;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public double getDepth() {
-        return depth;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getWidth() {
-        return width;
     }
 
     public static class OvenBuilder {
@@ -115,6 +97,21 @@ public class Oven extends Appliance {
         public Oven build() {
             return new Oven(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Oven{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                ", powerConsumption=" + powerConsumption +
+                ", weight=" + weight +
+                ", capacity=" + capacity +
+                ", depth=" + depth +
+                ", height=" + height +
+                ", width=" + width +
+                '}';
     }
 }
 

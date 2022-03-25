@@ -1,68 +1,101 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class Laptop extends Appliance {
-    private String batteryCapacity;
-    private String operationSystem;
-    private String memoryRom;
-    private String systemMemory;
-    private String cpu;
-    private String displayInches;
+    private final String brand;
+    private final String model;
+    private final double price;
+    private final int batteryCapacity;
+    private final String operationSystem;
+    private final int memoryRom;
+    private final int systemMemory;
+    private final double cpu;
+    private final int displayInches;
 
-    public Laptop(String batteryCapacity, String operationSystem, String memoryRom, String systemMemory, String cpu,
-                  String displayInches) {
-        this.batteryCapacity = batteryCapacity;
-        this.operationSystem = operationSystem;
-        this.memoryRom = memoryRom;
-        this.systemMemory = systemMemory;
-        this.cpu = cpu;
-        this.displayInches = displayInches;
+    private Laptop(LaptopBuilder laptopBuilder) {
+        this.brand= laptopBuilder.brand;
+        this.model=laptopBuilder.model;
+        this.price=laptopBuilder.price;
+        this.batteryCapacity = laptopBuilder.getBatteryCapacity();
+        this.operationSystem = laptopBuilder.getOperationSystem();
+        this.memoryRom = laptopBuilder.getMemoryRom();
+        this.systemMemory = laptopBuilder.getSystemMemory();
+        this.cpu = laptopBuilder.getCpu();
+        this.displayInches = laptopBuilder.getDisplayInches();
     }
 
-    public String getBatteryCapacity() {
-        return batteryCapacity;
-    }
+    public static class LaptopBuilder {
+        private final String brand;
+        private final String model;
+        private final double price;
+        private int batteryCapacity = 0;
+        private String operationSystem = null;
+        private int memoryRom = 0;
+        private int systemMemory = 0;
+        private double cpu = 0;
+        private int displayInches = 0;
 
-    public void setBatteryCapacity(String batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
-    }
+        public LaptopBuilder(String brand, String model, double price) {
+            this.brand = brand;
+            this.model = model;
+            this.price = price;
+        }
 
-    public String getOperationSystem() {
-        return operationSystem;
-    }
+        public LaptopBuilder setBatteryCapacity(int batteryCapacity) {
+            this.batteryCapacity = batteryCapacity;
+            return this;
+        }
 
-    public void setOperationSystem(String operationSystem) {
-        this.operationSystem = operationSystem;
-    }
+        public LaptopBuilder setOperationSystem(String operationSystem) {
+            this.operationSystem = operationSystem;
+            return this;
+        }
 
-    public String getMemoryRom() {
-        return memoryRom;
-    }
+        public LaptopBuilder setMemoryRom(int memoryRom) {
+            this.memoryRom = memoryRom;
+            return this;
+        }
 
-    public void setMemoryRom(String memoryRom) {
-        this.memoryRom = memoryRom;
-    }
+        public LaptopBuilder setSystemMemory(int systemMemory) {
+            this.systemMemory = systemMemory;
+            return this;
+        }
 
-    public String getSystemMemory() {
-        return systemMemory;
-    }
+        public LaptopBuilder setCpu(double cpu) {
+            this.cpu = cpu;
+            return this;
+        }
 
-    public void setSystemMemory(String systemMemory) {
-        this.systemMemory = systemMemory;
-    }
+        public LaptopBuilder setDisplayInches(int displayInches) {
+            this.displayInches = displayInches;
+            return this;
+        }
 
-    public String getCpu() {
-        return cpu;
-    }
+        public int getBatteryCapacity() {
+            return batteryCapacity;
+        }
 
-    public void setCpu(String cpu) {
-        this.cpu = cpu;
-    }
+        public String getOperationSystem() {
+            return operationSystem;
+        }
 
-    public String getDisplayInches() {
-        return displayInches;
-    }
+        public int getMemoryRom() {
+            return memoryRom;
+        }
 
-    public void setDisplayInches(String displayInches) {
-        this.displayInches = displayInches;
+        public int getSystemMemory() {
+            return systemMemory;
+        }
+
+        public double getCpu() {
+            return cpu;
+        }
+
+        public int getDisplayInches() {
+            return displayInches;
+        }
+
+        public Laptop build() {
+            return new Laptop(this);
+        }
     }
 }

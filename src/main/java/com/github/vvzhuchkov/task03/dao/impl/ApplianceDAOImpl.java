@@ -7,14 +7,14 @@ import com.github.vvzhuchkov.task03.entity.criteria.Criteria;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
     private final InputStream inputStream = databasePath();
 
     @Override
     public InputStream databasePath() {
-     /*   String databasePath = new File("").getAbsolutePath() + File.separator + "src" + File.separator +
-                "main" + File.separator + "resources" + File.separator + "appliances_db.txt";*/
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("appliances_db.txt");
         return inputStream;
     }
@@ -57,25 +57,15 @@ public class ApplianceDAOImpl implements ApplianceDAO {
     public List<String> readingParameters(String typeAppliance, String parametersAppliance) {
         List<String> parameters = new ArrayList<>();
         parameters.add(typeAppliance);
-        StringBuilder stringBuilder = new StringBuilder();
-
-      /*  char[] valuesAppliance = parametersAppliance.toCharArray();
-        for (int i = 0; i < valuesAppliance.length; i++) {
-            if (valuesAppliance[i] == '=') {
-                i++;
-                while (valuesAppliance[i] != ',' && i < valuesAppliance.length-1) {
-                    stringBuilder.append(valuesAppliance[i]);
-                    i++;
-                }*/
-        parameters.add(stringBuilder.toString());
-        stringBuilder = new StringBuilder();
+        Pattern pattern = Pattern.compile("=[^, ]+|\\S+]");
+        Matcher matcher = pattern.matcher(parametersAppliance);
+                while (matcher.find()){
+                parameters.add(parametersAppliance.substring(matcher.start()+1, matcher.end()));
+        }
         return parameters;
     }
 
     public Appliance createAppliance(List<String> parameters) {
-        for (String par : parameters) {
-            System.out.println(par);
-        }
         switch (parameters.get(0)) {
             case "Oven":
                 return new Oven.OvenBuilder(parameters.get(1), parameters.get(2), Double.parseDouble(parameters.get(3)))
@@ -96,9 +86,9 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         List<Appliance> appliances = new ArrayList<>();
         int coincidence = 0;
         String appliance;
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(databasePath()))) {
             while ((appliance = bufferedReader.readLine()) != null) {
-                while (!appliance.isEmpty()) {
+                if (!appliance.isEmpty()) {
                     String[] typeAppliance = appliance.split(" : ");
                     String[] parameters = typeAppliance[1].split(", ");
                     if (typeAppliance[0].equals(criteria.getGroupSearchName())) {
