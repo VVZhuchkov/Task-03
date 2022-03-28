@@ -1,6 +1,7 @@
 package com.github.vvzhuchkov.task03.dao.impl;
 
 import com.github.vvzhuchkov.task03.dao.ApplianceDAO;
+import com.github.vvzhuchkov.task03.dao.ApplianceFactory;
 import com.github.vvzhuchkov.task03.entity.*;
 import com.github.vvzhuchkov.task03.entity.criteria.Criteria;
 
@@ -8,6 +9,8 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.github.vvzhuchkov.task03.dao.ApplianceFactory.applianceFactory;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
     private final InputStream inputStream = databasePath();
@@ -47,7 +50,8 @@ public class ApplianceDAOImpl implements ApplianceDAO {
                                 if (parameter.equals(searchParameter)) {
                                     coincidence++;
                                     if (coincidence == criteria.getCriteria().size()) {
-                                        appliances.add(createAppliance(readingParameters(typeAppliance[0], typeAppliance[1])));
+                                        ApplianceFactory applianceFactory = new ApplianceFactory();
+                                        appliances.add(applianceFactory(readingParameters(typeAppliance[0], typeAppliance[1])));
                                     }
                                 }
                             }
@@ -64,7 +68,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         return appliances;
     }
 
-    public Appliance createAppliance(List<String> parameters) {
+    /*public Appliance createAppliance(List<String> parameters) {
         switch (parameters.get(0)) {
             case "Oven":
                 return new Oven.OvenBuilder(parameters.get(1), parameters.get(2), Double.parseDouble(parameters.get(3)))
@@ -119,5 +123,5 @@ public class ApplianceDAOImpl implements ApplianceDAO {
                         .build();
         }
         return null;
-    }
+    }*/
 }
