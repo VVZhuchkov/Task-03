@@ -1,9 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class Laptop extends Appliance {
-    private final String brand;
-    private final String model;
-    private final double price;
     private final int batteryCapacity;
     private final String operationSystem;
     private final int memoryRom;
@@ -12,9 +9,7 @@ public class Laptop extends Appliance {
     private final int displayInches;
 
     private Laptop(LaptopBuilder laptopBuilder) {
-        this.brand= laptopBuilder.brand;
-        this.model=laptopBuilder.model;
-        this.price=laptopBuilder.price;
+        super(laptopBuilder.getBrand(), laptopBuilder.getModel(), laptopBuilder.getPrice());
         this.batteryCapacity = laptopBuilder.getBatteryCapacity();
         this.operationSystem = laptopBuilder.getOperationSystem();
         this.memoryRom = laptopBuilder.getMemoryRom();
@@ -38,6 +33,18 @@ public class Laptop extends Appliance {
             this.brand = brand;
             this.model = model;
             this.price = price;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public double getPrice() {
+            return price;
         }
 
         public LaptopBuilder setBatteryCapacity(int batteryCapacity) {
@@ -97,5 +104,20 @@ public class Laptop extends Appliance {
         public Laptop build() {
             return new Laptop(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Laptop{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                ", batteryCapacity=" + batteryCapacity +
+                ", operationSystem='" + operationSystem + '\'' +
+                ", memoryRom=" + memoryRom +
+                ", systemMemory=" + systemMemory +
+                ", cpu=" + cpu +
+                ", displayInches=" + displayInches +
+                '}';
     }
 }

@@ -1,9 +1,6 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class Oven extends Appliance {
-    private final String brand;
-    private final String model;
-    private final double price;
     private final int powerConsumption;
     private final double weight;
     private final int capacity;
@@ -12,9 +9,7 @@ public class Oven extends Appliance {
     private final double width;
 
     private Oven(OvenBuilder ovenBuilder) {
-        this.brand = ovenBuilder.brand;
-        this.model = ovenBuilder.model;
-        this.price = ovenBuilder.price;
+        super(ovenBuilder.getBrand(), ovenBuilder.getModel(), ovenBuilder.getPrice());
         this.powerConsumption = ovenBuilder.getPowerConsumption();
         this.weight = ovenBuilder.getWeight();
         this.capacity = ovenBuilder.getCapacity();
@@ -38,6 +33,18 @@ public class Oven extends Appliance {
             this.brand = brand;
             this.model = model;
             this.price = price;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public double getPrice() {
+            return price;
         }
 
         public OvenBuilder setPowerConsumption(int powerConsumption) {

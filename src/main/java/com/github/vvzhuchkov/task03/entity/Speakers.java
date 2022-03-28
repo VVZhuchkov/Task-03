@@ -1,48 +1,97 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class Speakers extends Appliance {
-    private String powerConsumption;
-    private String numberOfSpeakers;
-    private String frequencyRange;
-    private String cordLength;
+    private final int powerConsumption;
+    private final int numberOfSpeakers;
+    private final String frequencyRange;
+    private final double cordLength;
 
-    public Speakers(String powerConsumption, String numberOfSpeakers, String frequencyRange, String cordLength) {
-        this.powerConsumption = powerConsumption;
-        this.numberOfSpeakers = numberOfSpeakers;
-        this.frequencyRange = frequencyRange;
-        this.cordLength = cordLength;
+    private Speakers(SpeakersBuilder speakersBuilder) {
+        super(speakersBuilder.getBrand(), speakersBuilder.getModel(), speakersBuilder.getPrice());
+        this.powerConsumption = speakersBuilder.getPowerConsumption();
+        this.numberOfSpeakers = speakersBuilder.getNumberOfSpeakers();
+        this.frequencyRange = speakersBuilder.getFrequencyRange();
+        this.cordLength = speakersBuilder.getCordLength();
     }
 
-    public String getPowerConsumption() {
-        return powerConsumption;
+    public static class SpeakersBuilder {
+        private final String brand;
+        private final String model;
+        private final double price;
+        private int powerConsumption = 0;
+        private int numberOfSpeakers = 0;
+        private String frequencyRange = null;
+        private double cordLength = 0;
+
+        public SpeakersBuilder(String brand, String model, double price) {
+            this.brand = brand;
+            this.model = model;
+            this.price = price;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public int getPowerConsumption() {
+            return powerConsumption;
+        }
+
+        public SpeakersBuilder setPowerConsumption(int powerConsumption) {
+            this.powerConsumption = powerConsumption;
+            return this;
+        }
+
+        public int getNumberOfSpeakers() {
+            return numberOfSpeakers;
+        }
+
+        public SpeakersBuilder setNumberOfSpeakers(int numberOfSpeakers) {
+            this.numberOfSpeakers = numberOfSpeakers;
+            return this;
+        }
+
+        public String getFrequencyRange() {
+            return frequencyRange;
+        }
+
+        public SpeakersBuilder setFrequencyRange(String frequencyRange) {
+            this.frequencyRange = frequencyRange;
+            return this;
+        }
+
+        public double getCordLength() {
+            return cordLength;
+        }
+
+        public SpeakersBuilder setCordLength(double cordLength) {
+            this.cordLength = cordLength;
+            return this;
+        }
+
+        public Speakers build() {
+            return new Speakers(this);
+        }
     }
 
-    public void setPowerConsumption(String powerConsumption) {
-        this.powerConsumption = powerConsumption;
+    @Override
+    public String toString() {
+        return "Speakers{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                ", powerConsumption=" + powerConsumption +
+                ", numberOfSpeakers=" + numberOfSpeakers +
+                ", frequencyRange='" + frequencyRange + '\'' +
+                ", cordLength=" + cordLength +
+                '}';
     }
-
-    public String getNumberOfSpeakers() {
-        return numberOfSpeakers;
-    }
-
-    public void setNumberOfSpeakers(String numberOfSpeakers) {
-        this.numberOfSpeakers = numberOfSpeakers;
-    }
-
-    public String getFrequencyRange() {
-        return frequencyRange;
-    }
-
-    public void setFrequencyRange(String frequencyRange) {
-        this.frequencyRange = frequencyRange;
-    }
-
-    public String getCordLength() {
-        return cordLength;
-    }
-
-    public void setCordLength(String cordLength) {
-        this.cordLength = cordLength;
-    }
-
 }

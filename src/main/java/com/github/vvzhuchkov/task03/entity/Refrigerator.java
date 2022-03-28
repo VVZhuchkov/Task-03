@@ -1,68 +1,124 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class Refrigerator extends Appliance {
-    private String powerConsumption;
-    private String weight;
-    private String freezerCapacity;
-    private String overallCapacity;
-    private String height;
-    private String width;
+    private final int powerConsumption;
+    private final double weight;
+    private final int freezerCapacity;
+    private final int overallCapacity;
+    private final double height;
+    private final double width;
 
-    public Refrigerator(String powerConsumption, String weight, String freezerCapacity, String overallCapacity,
-                        String height, String width) {
-        this.powerConsumption = powerConsumption;
-        this.weight = weight;
-        this.freezerCapacity = freezerCapacity;
-        this.overallCapacity = overallCapacity;
-        this.height = height;
-        this.width = width;
+    private Refrigerator(RefrigeratorBuilder refrigeratorBuilder) {
+        super(refrigeratorBuilder.getBrand(), refrigeratorBuilder.getModel(), refrigeratorBuilder.getPrice());
+        this.powerConsumption = refrigeratorBuilder.getPowerConsumption();
+        this.weight = refrigeratorBuilder.getWeight();
+        this.freezerCapacity = refrigeratorBuilder.getFreezerCapacity();
+        this.overallCapacity = refrigeratorBuilder.getOverallCapacity();
+        this.height = refrigeratorBuilder.getHeight();
+        this.width = refrigeratorBuilder.getWidth();
     }
 
-    public String getPowerConsumption() {
-        return powerConsumption;
+    public static class RefrigeratorBuilder {
+        private final String brand;
+        private final String model;
+        private final double price;
+        private int powerConsumption = 0;
+        private double weight = 0;
+        private int freezerCapacity = 0;
+        private int overallCapacity = 0;
+        private double height = 0;
+        private double width = 0;
+
+        public RefrigeratorBuilder(String brand, String model, double price) {
+            this.brand = brand;
+            this.model = model;
+            this.price = price;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public int getPowerConsumption() {
+            return powerConsumption;
+        }
+
+        public RefrigeratorBuilder setPowerConsumption(int powerConsumption) {
+            this.powerConsumption = powerConsumption;
+            return this;
+        }
+
+        public double getWeight() {
+            return weight;
+        }
+
+        public RefrigeratorBuilder setWeight(double weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        public int getFreezerCapacity() {
+            return freezerCapacity;
+        }
+
+        public RefrigeratorBuilder setFreezerCapacity(int freezerCapacity) {
+            this.freezerCapacity = freezerCapacity;
+            return this;
+        }
+
+        public int getOverallCapacity() {
+            return overallCapacity;
+        }
+
+        public RefrigeratorBuilder setOverallCapacity(int overallCapacity) {
+            this.overallCapacity = overallCapacity;
+            return this;
+        }
+
+        public double getHeight() {
+            return height;
+        }
+
+        public RefrigeratorBuilder setHeight(double height) {
+            this.height = height;
+            return this;
+        }
+
+        public double getWidth() {
+            return width;
+        }
+
+        public RefrigeratorBuilder setWidth(double width) {
+            this.width = width;
+            return this;
+        }
+
+        public Refrigerator build() {
+            return new Refrigerator(this);
+
+        }
     }
 
-    public void setPowerConsumption(String powerConsumption) {
-        this.powerConsumption = powerConsumption;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public String getFreezerCapacity() {
-        return freezerCapacity;
-    }
-
-    public void setFreezerCapacity(String freezerCapacity) {
-        this.freezerCapacity = freezerCapacity;
-    }
-
-    public String getOverallCapacity() {
-        return overallCapacity;
-    }
-
-    public void setOverallCapacity(String overallCapacity) {
-        this.overallCapacity = overallCapacity;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getWidth() {
-        return width;
-    }
-
-    public void setWidth(String width) {
-        this.width = width;
+    @Override
+    public String toString() {
+        return "Refrigerator{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                ", powerConsumption=" + powerConsumption +
+                ", weight=" + weight +
+                ", freezerCapacity=" + freezerCapacity +
+                ", overallCapacity=" + overallCapacity +
+                ", height=" + height +
+                ", width=" + width +
+                '}';
     }
 }

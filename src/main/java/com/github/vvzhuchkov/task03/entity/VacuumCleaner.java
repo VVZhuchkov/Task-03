@@ -1,68 +1,123 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class VacuumCleaner extends Appliance {
-    private String powerConsumption;
-    private String filterType;
-    private String bagType;
-    private String wandType;
-    private String motorSpeedRegulation;
-    private String cleaningWidth;
+    private final int powerConsumption;
+    private final String filterType;
+    private final String bagType;
+    private final String wandType;
+    private final int motorSpeedRegulation;
+    private final int cleaningWidth;
 
-    public VacuumCleaner(String powerConsumption, String filterType, String bagType, String wandType,
-                         String motorSpeedRegulation, String cleaningWidth) {
-        this.powerConsumption = powerConsumption;
-        this.filterType = filterType;
-        this.bagType = bagType;
-        this.wandType = wandType;
-        this.motorSpeedRegulation = motorSpeedRegulation;
-        this.cleaningWidth = cleaningWidth;
+    private VacuumCleaner(VacuumCleanerBuilder vacuumCleanerBuilder) {
+        super(vacuumCleanerBuilder.getBrand(), vacuumCleanerBuilder.getModel(), vacuumCleanerBuilder.getPrice());
+        this.powerConsumption = vacuumCleanerBuilder.getPowerConsumption();
+        this.filterType = vacuumCleanerBuilder.getFilterType();
+        this.bagType = vacuumCleanerBuilder.getBagType();
+        this.wandType = vacuumCleanerBuilder.getWandType();
+        this.motorSpeedRegulation = vacuumCleanerBuilder.getMotorSpeedRegulation();
+        this.cleaningWidth = vacuumCleanerBuilder.getCleaningWidth();
     }
 
-    public String getPowerConsumption() {
-        return powerConsumption;
-    }
+   public static class VacuumCleanerBuilder{
+       private final String brand;
+       private final String model;
+       private final double price;
+       private int powerConsumption = 0;
+       private String filterType = null;
+       private String bagType = null;
+       private String wandType = null;
+       private int motorSpeedRegulation = 0;
+       private int cleaningWidth = 0;
 
-    public void setPowerConsumption(String powerConsumption) {
-        this.powerConsumption = powerConsumption;
-    }
+       public VacuumCleanerBuilder(String brand, String model, double price) {
+           this.brand = brand;
+           this.model = model;
+           this.price = price;
+       }
 
-    public String getFilterType() {
-        return filterType;
-    }
+       public String getBrand() {
+           return brand;
+       }
 
-    public void setFilterType(String filterType) {
-        this.filterType = filterType;
-    }
+       public String getModel() {
+           return model;
+       }
 
-    public String getBagType() {
-        return bagType;
-    }
+       public double getPrice() {
+           return price;
+       }
 
-    public void setBagType(String bagType) {
-        this.bagType = bagType;
-    }
+       public int getPowerConsumption() {
+           return powerConsumption;
+       }
 
-    public String getWandType() {
-        return wandType;
-    }
+       public VacuumCleanerBuilder setPowerConsumption(int powerConsumption) {
+           this.powerConsumption = powerConsumption;
+           return this;
+       }
 
-    public void setWandType(String wandType) {
-        this.wandType = wandType;
-    }
+       public String getFilterType() {
+           return filterType;
+       }
 
-    public String getMotorSpeedRegulation() {
-        return motorSpeedRegulation;
-    }
+       public VacuumCleanerBuilder setFilterType(String filterType) {
+           this.filterType = filterType;
+           return this;
+       }
 
-    public void setMotorSpeedRegulation(String motorSpeedRegulation) {
-        this.motorSpeedRegulation = motorSpeedRegulation;
-    }
+       public String getBagType() {
+           return bagType;
+       }
 
-    public String getCleaningWidth() {
-        return cleaningWidth;
-    }
+       public VacuumCleanerBuilder setBagType(String bagType) {
+           this.bagType = bagType;
+           return this;
+       }
 
-    public void setCleaningWidth(String cleaningWidth) {
-        this.cleaningWidth = cleaningWidth;
+       public String getWandType() {
+           return wandType;
+       }
+
+       public VacuumCleanerBuilder setWandType(String wandType) {
+           this.wandType = wandType;
+           return this;
+       }
+
+       public int getMotorSpeedRegulation() {
+           return motorSpeedRegulation;
+       }
+
+       public VacuumCleanerBuilder setMotorSpeedRegulation(int motorSpeedRegulation) {
+           this.motorSpeedRegulation = motorSpeedRegulation;
+           return this;
+       }
+
+       public int getCleaningWidth() {
+           return cleaningWidth;
+       }
+
+       public VacuumCleanerBuilder setCleaningWidth(int cleaningWidth) {
+           this.cleaningWidth = cleaningWidth;
+           return this;
+       }
+
+       public VacuumCleaner build(){
+           return new VacuumCleaner(this);
+       }
+   }
+
+    @Override
+    public String toString() {
+        return "VacuumCleaner{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                ", powerConsumption=" + powerConsumption +
+                ", filterType='" + filterType + '\'' +
+                ", bagType='" + bagType + '\'' +
+                ", wandType='" + wandType + '\'' +
+                ", motorSpeedRegulation=" + motorSpeedRegulation +
+                ", cleaningWidth=" + cleaningWidth +
+                '}';
     }
 }

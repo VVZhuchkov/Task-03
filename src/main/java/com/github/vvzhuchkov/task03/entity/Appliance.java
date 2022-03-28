@@ -5,4 +5,9 @@ public abstract class Appliance {
     String model;
     double price;
 
+    Appliance(String brand, String model, double price) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
 }

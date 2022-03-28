@@ -1,58 +1,111 @@
 package com.github.vvzhuchkov.task03.entity;
 
 public class TabletPC extends Appliance {
-    private String batteryCapacity;
-    private String displayInches;
-    private String memoryRom;
-    private String flashMemoryCapacity;
-    private String color;
+    private final int batteryCapacity;
+    private final double displayInches;
+    private final int memoryRom;
+    private final int flashMemoryCapacity;
+    private final String color;
 
-    public TabletPC(String batteryCapacity, String displayInches, String memoryRom, String flashMemoryCapacity,
-                    String color) {
-        this.batteryCapacity = batteryCapacity;
-        this.displayInches = displayInches;
-        this.memoryRom = memoryRom;
-        this.flashMemoryCapacity = flashMemoryCapacity;
-        this.color = color;
+    private TabletPC(TabletPCBuilder tabletPCBuilder) {
+        super(tabletPCBuilder.getBrand(), tabletPCBuilder.getModel(), tabletPCBuilder.getPrice());
+        this.batteryCapacity = tabletPCBuilder.getBatteryCapacity();
+        this.displayInches = tabletPCBuilder.getDisplayInches();
+        this.memoryRom = tabletPCBuilder.getMemoryRom();
+        this.flashMemoryCapacity = tabletPCBuilder.getFlashMemoryCapacity();
+        this.color = tabletPCBuilder.getColor();
     }
 
-    public String getBatteryCapacity() {
-        return batteryCapacity;
+    public static class TabletPCBuilder {
+        private final String brand;
+        private final String model;
+        private final double price;
+        private int batteryCapacity = 0;
+        private double displayInches = 0;
+        private int memoryRom = 0;
+        private int flashMemoryCapacity = 0;
+        private String color = null;
+
+
+        public TabletPCBuilder(String brand, String model, double price) {
+            this.brand = brand;
+            this.model = model;
+            this.price = price;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public int getBatteryCapacity() {
+            return batteryCapacity;
+        }
+
+        public TabletPCBuilder setBatteryCapacity(int batteryCapacity) {
+            this.batteryCapacity = batteryCapacity;
+            return this;
+        }
+
+        public double getDisplayInches() {
+            return displayInches;
+        }
+
+        public TabletPCBuilder setDisplayInches(double displayInches) {
+            this.displayInches = displayInches;
+            return this;
+        }
+
+        public int getMemoryRom() {
+            return memoryRom;
+        }
+
+        public TabletPCBuilder setMemoryRom(int memoryRom) {
+            this.memoryRom = memoryRom;
+            return this;
+        }
+
+        public int getFlashMemoryCapacity() {
+            return flashMemoryCapacity;
+        }
+
+        public TabletPCBuilder setFlashMemoryCapacity(int flashMemoryCapacity) {
+            this.flashMemoryCapacity = flashMemoryCapacity;
+            return this;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public TabletPCBuilder setColor(String color) {
+            this.color = color;
+            return this;
+        }
+
+        public TabletPC build() {
+            return new TabletPC(this);
+        }
     }
 
-    public void setBatteryCapacity(String batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
-    }
-
-    public String getDisplayInches() {
-        return displayInches;
-    }
-
-    public void setDisplayInches(String displayInches) {
-        this.displayInches = displayInches;
-    }
-
-    public String getMemoryRom() {
-        return memoryRom;
-    }
-
-    public void setMemoryRom(String memoryRom) {
-        this.memoryRom = memoryRom;
-    }
-
-    public String getFlashMemoryCapacity() {
-        return flashMemoryCapacity;
-    }
-
-    public void setFlashMemoryCapacity(String flashMemoryCapacity) {
-        this.flashMemoryCapacity = flashMemoryCapacity;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    @Override
+    public String toString() {
+        return "TabletPC{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                ", batteryCapacity=" + batteryCapacity +
+                ", displayInches=" + displayInches +
+                ", memoryRom=" + memoryRom +
+                ", flashMemoryCapacity=" + flashMemoryCapacity +
+                ", color='" + color + '\'' +
+                '}';
     }
 }

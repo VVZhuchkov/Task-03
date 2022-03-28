@@ -40,10 +40,20 @@ public class Main {
 
         Criteria criteriaTabletPC = new Criteria(TabletPC.class.getSimpleName());
         criteriaTabletPC.add(TabletPC.COLOR.toString(), "blue");
-        criteriaTabletPC.add(TabletPC.DISPLAY_INCHES.toString(), 14);
+        criteriaTabletPC.add(TabletPC.DISPLAY_INCHES.toString(), 15);
         criteriaTabletPC.add(TabletPC.MEMORY_ROM.toString(), 4000);
 
         appliances = service.find(criteriaTabletPC);// find(Object...obj)
+
+        PrintApplianceInfo.print(appliances);
+
+        //////////////////////////////////////////////////////////////////
+
+        Criteria criteriaRefrigerator = new Criteria(Refrigerator.class.getSimpleName());
+        criteriaRefrigerator.add(Refrigerator.BRAND.toString(), "Samsung");
+
+
+        appliances = service.find(criteriaRefrigerator);// find(Object...obj)
 
         PrintApplianceInfo.print(appliances);
     }
