@@ -8,15 +8,16 @@ import java.util.List;
 import java.util.Map;
 
 public class ApplianceFactory {
-    static Map<String, Appliance> applianceMap = new HashMap<>();
+    static Map<String, ApplianceCreation> applianceMap = new HashMap<>();
 
-    public static Appliance applianceFactory(List <String> parametersAppliance) {
-        applianceMap.put("Oven", new OvenCreation().applianceCreation(parametersAppliance));
-        applianceMap.put("Laptop", new LaptopCreation().applianceCreation(parametersAppliance));
-        applianceMap.put("Refrigerator", new RefrigeratorCreation().applianceCreation(parametersAppliance));
-        applianceMap.put("Speakers", new SpeakersCreation().applianceCreation(parametersAppliance));
-        applianceMap.put("TabletPC", new TabletPCCreation().applianceCreation(parametersAppliance));
-        applianceMap.put("VacuumCleaner", new VacuumCleanerCreation().applianceCreation(parametersAppliance));
-        return applianceMap.get(parametersAppliance.get(0));
+    public static Appliance applianceFactory(List<String> parametersAppliance) {
+        applianceMap.put("Oven", new OvenCreation());
+        applianceMap.put("Laptop", new LaptopCreation());
+        applianceMap.put("Refrigerator", new RefrigeratorCreation());
+        applianceMap.put("Speakers", new SpeakersCreation());
+        applianceMap.put("TabletPC", new TabletPCCreation());
+        applianceMap.put("VacuumCleaner", new VacuumCleanerCreation());
+        ApplianceCreation applianceCreation = applianceMap.get(parametersAppliance.get(0));
+        return applianceCreation.applianceCreation(parametersAppliance);
     }
 }

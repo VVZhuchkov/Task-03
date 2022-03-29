@@ -1,5 +1,7 @@
 package com.github.vvzhuchkov.task03.entity;
 
+import java.util.Objects;
+
 public class TabletPC extends Appliance {
     private final int batteryCapacity;
     private final double displayInches;
@@ -107,5 +109,20 @@ public class TabletPC extends Appliance {
                 ", flashMemoryCapacity=" + flashMemoryCapacity +
                 ", color='" + color + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TabletPC tabletPC = (TabletPC) o;
+        return batteryCapacity == tabletPC.batteryCapacity && Double.compare(tabletPC.displayInches, displayInches) == 0
+                && memoryRom == tabletPC.memoryRom && flashMemoryCapacity == tabletPC.flashMemoryCapacity
+                && color.equals(tabletPC.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(batteryCapacity, displayInches, memoryRom, flashMemoryCapacity, color);
     }
 }

@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface ApplianceDAO {
 
-	InputStream databasePath();
-	List<Appliance> find(Criteria criteria);
-	List<String> readingParameters(String typeAppliance, String parametersAppliance);
+    InputStream databasePath();
+
+    List<Appliance> find(Criteria criteria);
+
+    List<String> readingParameters(String typeAppliance, String parametersAppliance);
 }

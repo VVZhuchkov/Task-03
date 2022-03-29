@@ -1,5 +1,7 @@
 package com.github.vvzhuchkov.task03.entity;
 
+import java.util.Objects;
+
 public class Speakers extends Appliance {
     private final int powerConsumption;
     private final int numberOfSpeakers;
@@ -93,5 +95,20 @@ public class Speakers extends Appliance {
                 ", frequencyRange='" + frequencyRange + '\'' +
                 ", cordLength=" + cordLength +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Speakers speakers = (Speakers) o;
+        return powerConsumption == speakers.powerConsumption && numberOfSpeakers == speakers.numberOfSpeakers
+                && Double.compare(speakers.cordLength, cordLength) == 0
+                && frequencyRange.equals(speakers.frequencyRange);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(powerConsumption, numberOfSpeakers, frequencyRange, cordLength);
     }
 }

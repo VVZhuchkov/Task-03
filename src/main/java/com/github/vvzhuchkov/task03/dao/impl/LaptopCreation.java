@@ -1,11 +1,12 @@
 package com.github.vvzhuchkov.task03.dao.impl;
 
+import com.github.vvzhuchkov.task03.dao.ApplianceCreation;
 import com.github.vvzhuchkov.task03.entity.Appliance;
 import com.github.vvzhuchkov.task03.entity.Laptop;
 
 import java.util.List;
 
-public class LaptopCreation {
+public class LaptopCreation implements ApplianceCreation {
 
     public Appliance applianceCreation(List<String> parametersAppliance) {
         return new Laptop.LaptopBuilder(parametersAppliance.get(1), parametersAppliance.get(2), Double.parseDouble(parametersAppliance.get(3)))

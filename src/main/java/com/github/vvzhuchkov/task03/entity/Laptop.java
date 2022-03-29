@@ -1,5 +1,7 @@
 package com.github.vvzhuchkov.task03.entity;
 
+import java.util.Objects;
+
 public class Laptop extends Appliance {
     private final int batteryCapacity;
     private final String operationSystem;
@@ -119,5 +121,20 @@ public class Laptop extends Appliance {
                 ", cpu=" + cpu +
                 ", displayInches=" + displayInches +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Laptop laptop = (Laptop) o;
+        return batteryCapacity == laptop.batteryCapacity && memoryRom == laptop.memoryRom
+                && systemMemory == laptop.systemMemory && Double.compare(laptop.cpu, cpu) == 0
+                && displayInches == laptop.displayInches && operationSystem.equals(laptop.operationSystem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(batteryCapacity, operationSystem, memoryRom, systemMemory, cpu, displayInches);
     }
 }

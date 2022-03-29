@@ -1,5 +1,7 @@
 package com.github.vvzhuchkov.task03.entity;
 
+import java.util.Objects;
+
 public class Oven extends Appliance {
     private final int powerConsumption;
     private final double weight;
@@ -119,6 +121,21 @@ public class Oven extends Appliance {
                 ", height=" + height +
                 ", width=" + width +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Oven oven = (Oven) o;
+        return powerConsumption == oven.powerConsumption && Double.compare(oven.weight, weight) == 0
+                && capacity == oven.capacity && Double.compare(oven.depth, depth) == 0
+                && Double.compare(oven.height, height) == 0 && Double.compare(oven.width, width) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(powerConsumption, weight, capacity, depth, height, width);
     }
 }
 
