@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ApplianceFactory {
+public abstract class ApplianceFactory {
     static Map<String, ApplianceCreation> applianceMap = new HashMap<>();
 
     public static Appliance applianceFactory(List<String> parametersAppliance) {

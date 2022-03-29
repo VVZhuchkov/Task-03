@@ -14,19 +14,15 @@ public class ApplianceServiceImpl implements ApplianceService {
 	@Override
 	public List<Appliance> find(Criteria criteria) {
 		if (!Validator.criteriaValidator(criteria)) {
-			return null;
+			throw new RuntimeException("Wrong parameters have been inputted!");
 		}
 		
 		DAOFactory factory = DAOFactory.getInstance();
 		ApplianceDAO applianceDAO = factory.getApplianceDAO();
 		
 		List<Appliance> appliances = applianceDAO.find(criteria);
-		
-		// you may add your own code here
-		
+
 		return appliances;
 	}
 
 }
-
-//you may add your own new classes

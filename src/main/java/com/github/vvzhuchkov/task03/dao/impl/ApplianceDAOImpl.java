@@ -50,7 +50,6 @@ public class ApplianceDAOImpl implements ApplianceDAO {
                                 if (parameter.equals(searchParameter)) {
                                     coincidence++;
                                     if (coincidence == criteria.getCriteria().size()) {
-                                        ApplianceFactory applianceFactory = new ApplianceFactory();
                                         appliances.add(applianceFactory(readingParameters(typeAppliance[0], typeAppliance[1])));
                                     }
                                 }
