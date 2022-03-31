@@ -111,7 +111,7 @@ public class Refrigerator extends Appliance {
 
     @Override
     public String toString() {
-        return "Refrigerator{" +
+        return "Refrigerator {" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +

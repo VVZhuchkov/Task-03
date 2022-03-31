@@ -13,12 +13,11 @@ public class Validator {
             if (criteria.getGroupSearchName().equals(numeration.getSimpleName())) {
                 for (Object parameterEnum : numeration.getEnumConstants()) {
                     for (String criteriaParameterMap : criteria.getCriteria().keySet()) {
-                        if (parameterEnum.equals(criteriaParameterMap)){
+                        if (String.valueOf(parameterEnum).equals(criteriaParameterMap)){
                             coincidence++;
                         }
                     }
                 }
-
             }
         }
         Boolean checkParameter = (coincidence == criteriasQuantity)? true:false;

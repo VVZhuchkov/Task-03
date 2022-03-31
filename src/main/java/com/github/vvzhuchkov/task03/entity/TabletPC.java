@@ -99,7 +99,7 @@ public class TabletPC extends Appliance {
 
     @Override
     public String toString() {
-        return "TabletPC{" +
+        return "TabletPC {" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +

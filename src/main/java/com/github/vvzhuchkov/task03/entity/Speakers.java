@@ -86,7 +86,7 @@ public class Speakers extends Appliance {
 
     @Override
     public String toString() {
-        return "Speakers{" +
+        return "Speakers {" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +

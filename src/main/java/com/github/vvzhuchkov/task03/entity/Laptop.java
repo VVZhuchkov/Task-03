@@ -110,7 +110,7 @@ public class Laptop extends Appliance {
 
     @Override
     public String toString() {
-        return "Laptop{" +
+        return "Laptop {" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +

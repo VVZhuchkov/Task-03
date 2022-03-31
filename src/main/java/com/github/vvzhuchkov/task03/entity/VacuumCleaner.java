@@ -110,7 +110,7 @@ public class VacuumCleaner extends Appliance {
 
     @Override
     public String toString() {
-        return "VacuumCleaner{" +
+        return "VacuumCleaner {" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +

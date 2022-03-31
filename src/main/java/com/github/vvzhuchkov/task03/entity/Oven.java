@@ -110,7 +110,7 @@ public class Oven extends Appliance {
 
     @Override
     public String toString() {
-        return "Oven{" +
+        return "Oven {" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +
