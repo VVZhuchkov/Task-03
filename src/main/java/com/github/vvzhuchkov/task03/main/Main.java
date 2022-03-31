@@ -58,7 +58,7 @@ public class Main {
 
         //////////////////////////////////////////////////////////////////
 
-        Criteria criteriaRefrigerator2 = new Criteria(Refrigerator.class.getSimpleName());
+        criteriaRefrigerator = new Criteria(Refrigerator.class.getSimpleName());
         criteriaRefrigerator.add(Refrigerator.FREEZER_CAPACITY.toString(), "25");
 
         appliances = service.find(criteriaRefrigerator);// find(Object...obj)
@@ -99,8 +99,3 @@ public class Main {
         PrintApplianceInfo.print(appliances);
     }
 }
-
-    //VacuumCleaner : BRAND=Philips, MODEL=PHILR2, PRICE=205, POWER_CONSUMPTION=110, FILTER_TYPE=B, BAG_TYPE=AA-89, WAND_TYPE=all-in-one, MOTOR_SPEED_REGULATION=2900, CLEANING_WIDTH=25
-    //Laptop : BRAND=Dell, MODEL=Inspiron 8366, PRICE=820, BATTERY_CAPACITY=7200, OS=Windows, MEMORY_ROM=4000, SYSTEM_MEMORY=1000, CPU=1.2, DISPLAY_INCHS=18
-    //Laptop : BRAND=HP, MODEL=Elitebook X360, PRICE=1200, BATTERY_CAPACITY=8500, OS=Linux, MEMORY_ROM=8000, SYSTEM_MEMORY=1000, CPU=2.2, DISPLAY_INCHS=19
-    //Laptop : BRAND=Apple, MODEL=Macbook Pro 13, PRICE=1900, BATTERY_CAPACITY=6900, OS=Windows, MEMORY_ROM=8000, SYSTEM_MEMORY=1000, CPU=3.2, DISPLAY_INCHS=22
